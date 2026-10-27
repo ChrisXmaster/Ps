@@ -18,5 +18,6 @@ export const createBet = async (bet: Omit<Bet, 'id' | 'created_at'>) => {
   if (error) throw error
 }
 export const updateBetResult = async (id: string, resultat: Bet['resultat']) => { const { error } = await supabase.from('bets').update({ resultat }).eq('id', id); if (error) throw error }
+export const deleteBet = async (id: string) => { const { error } = await supabase.from('bets').delete().eq('id', id); if (error) throw error }
 export const createMovement = async (movement: Omit<Movement, 'id' | 'created_at'>) => { const { error } = await supabase.from('bankroll_movements').insert(movement); if (error) throw error }
 export const saveSettings = async (settings: Settings) => { const { error } = await supabase.from('settings').upsert({ id: true, ...settings }); if (error) throw error }
